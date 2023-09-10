@@ -477,3 +477,7 @@ $RECYCLE.BIN/
 *.lnk
 
 .vscode/*
+
+.env/*
+
+appsettings.json

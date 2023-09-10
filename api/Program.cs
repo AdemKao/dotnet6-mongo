@@ -16,7 +16,10 @@ builder.Services
     .AddSingleton<IMongoClient>(
         s => new MongoClient(builder.Configuration.GetValue<string>("MongoDbSettings:ConnectionString")));
 
-builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services
+    .AddScoped<IStudentService, StudentService>()
+    .AddScoped<ISelfAuthenticationService, SelfAuthenticationService>();
+
 #endregion
 
 builder.Services.AddControllers();

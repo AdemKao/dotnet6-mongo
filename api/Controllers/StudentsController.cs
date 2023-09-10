@@ -20,16 +20,16 @@ public class StudentsController : ControllerBase
     }
     // GET  api/v1/<StudentsController>
     [HttpGet]
-    public ActionResult<List<Student>> Get()
+    public async Task<ActionResult<List<Student>>> Get()
     {
-        return studentService.Get();
+        return await studentService.GetAsync();
     }
 
     // GET  api/v1/<StudentsController>/id
     [HttpGet("{id}")]
-    public ActionResult<Student> Get(string id)
+    public async Task<ActionResult<Student>> Get(string id)
     {
-        var student = studentService.Get(id);
+        var student = await studentService.GetAsync(id);
         if (student == null)
             return NotFound($"Student with Id = {id} not found.");
         return student;
@@ -37,34 +37,34 @@ public class StudentsController : ControllerBase
 
     // POST  api/v1/<StudentsController>
     [HttpPost]
-    public ActionResult<Student> Post(Student student)
+    public async Task<ActionResult<Student>> Post(Student student)
     {
-        studentService.Create(student);
+        await studentService.CreateAsync(student);
         return CreatedAtAction(nameof(Get), new { id = student.Id }, student);
     }
 
     // Put  api/v1/<StudentsController>
     [HttpPut("{id}")]
-    public ActionResult<Student> Put(string id, [FromBody] Student student)
+    public async Task<ActionResult<Student>> Put(string id, [FromBody] Student student)
     {
-        var existingStudent = studentService.Get(id);
+        var existingStudent = await studentService.GetAsync(id);
         if (existingStudent == null)
             return NotFound($"Student with Id = {id} not found.");
 
-        studentService.Update(id, student);
+        await studentService.UpdateAsync(id, student);
         // return CreatedAtAction(nameof(Get), new { id = student.Id }, student);
         return NoContent();
     }
 
     // Delete  api/v1/<StudentsController>/id
     [HttpDelete("{id}")]
-    public ActionResult Delete(string id)
+    public async Task<ActionResult> Delete(string id)
     {
-        var existingStudent = studentService.Get(id);
+        var existingStudent = await studentService.GetAsync(id);
         if (existingStudent == null)
             return NotFound($"Student with Id = {id} not found.");
 
-        studentService.Remove(id);
+        await studentService.RemoveAsync(id);
 
         return Ok($"Student with Id = {id} deleted");
     }

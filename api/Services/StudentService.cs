@@ -13,29 +13,21 @@ public class StudentService : IStudentService
         var database = mongoClient.GetDatabase(settings.DatabaseName);
         _students = database.GetCollection<Student>(settings.StudentCollectionName);
     }
-    public Student Create(Student student)
+    public async Task<Student> CreateAsync(Student student)
     {
-        _students.InsertOne(student);
+        await _students.InsertOneAsync(student);
         return student;
     }
 
-    public List<Student> Get()
-    {
-        return _students.Find(student => true).ToList();
-    }
+    public async Task<List<Student>> GetAsync() =>
+        await _students.Find(student => true).ToListAsync();
 
-    public Student Get(string id)
-    {
-        return _students.Find(student => student.Id == id).FirstOrDefault();
-    }
+    public async Task<Student> GetAsync(string id) =>
+        await _students.Find(student => student.Id == id).FirstOrDefaultAsync();
 
-    public void Remove(string id)
-    {
-        _students.DeleteOne(student => student.Id == id);
-    }
+    public async Task RemoveAsync(string id) =>
+        await _students.DeleteOneAsync(student => student.Id == id);
 
-    public void Update(string id, Student student)
-    {
-        _students.ReplaceOne(student => student.Id == id, student);
-    }
+    public async Task UpdateAsync(string id, Student student) =>
+        await _students.ReplaceOneAsync(student => student.Id == id, student);
 }

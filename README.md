@@ -47,7 +47,7 @@ dotnet add package MongoDB.Driver
 {
   "MongoDatabaseSettings": {
     "DatabaseName": "SideProject",
-    "ConnectionString": "mongodb+srv://<username>:<passsword>@blacmarc.xl78bo3.mongodb.net/?retryWrites=true&w=majority",
+    "ConnectionString": "mongodb+srv://<username>:<passsword>@{url}?retryWrites=true&w=majority",
     "StudentCollectionName": "studentcourses"
   }
 }
@@ -73,9 +73,16 @@ public interface IStudentStoreDatabaseSettings
 ### Create CRUD
 <br/>
 
-## Adding JWT Authentications
+## Adding JWT Authentications [SELF]
 
 
+
+## Adding JWT Authentications [FIREBASE]
+### Install Firebase Package
+```
+dotnet add package FirebaseAdmin
+dotnet add package System.IdentityModel.Tokens.Jwt
+```
 
 ## Source
 - MongoDB

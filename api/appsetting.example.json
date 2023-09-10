@@ -1,12 +1,12 @@
 {
   "MongoDbSettings": {
     "DatabaseName": "SideProject",
-    "ConnectionString": "mongodb+srv://app:WTkmEsQWNJUoqJYi@blacmarc.xl78bo3.mongodb.net/?retryWrites=true&w=majority",
+    "ConnectionString": "mongodb+srv://{user}:{password}@{url}/?retryWrites=true&w=majority",
     "StudentCollectionName": "studentcourses",
     "UserCollectionName": "users"
   },
   "AppSettings": {
-    "Token": "3c35dabae8eda309cadd8cb816dd6a42ed2af6c1604bf0ebdf0730c702f53323c0019f0f97978f0b60ad157bc39977cb51a89717bf0c54d46a6e110f9e9514e7"
+    "Token": "hash512"
   },
   "Logging": {
     "LogLevel": {
